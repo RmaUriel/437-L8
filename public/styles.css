@@ -3,7 +3,7 @@ body{
 
 }
 
-body p, dt, ul, dd{
+body p, dt, ul, dd, form{
     font-family: var(--Font-Family-Base), sans-serif;
     font-size: larger;
     color: var(--Color-Text-Primary)
@@ -73,6 +73,7 @@ h2, h3{
     flex-direction: column;
     align-items: center;
 }
+
 
 @media (max-width: 40rem){
     .nav-left{

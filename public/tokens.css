@@ -16,7 +16,6 @@
 body.dark-mode {
     --Color-Bg-Main: rgb(30, 30, 30);
     --Color-Bg-Header: rgb(15, 15, 15);
-
     --Color-Text-Primary: rgb(230, 230, 230);
     --Color-Text-Headers: rgb(170, 200, 255);
     --Color-Text-Inverse: rgb(255, 255, 255);

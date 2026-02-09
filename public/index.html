@@ -8,34 +8,157 @@
 
 <body>
  <div id="site-header"></div>
-<main>
-  <img
-          class="my-picture"
-          src="my-photo.jpeg"
-          alt="This is a picture of me"
-  />
+  <main>
+    <img
+            class="my-picture"
+            src="my-photo.jpeg"
+            alt="This is a picture of me"
+    />
 
-  <h2>Contact Information</h2>
-  <dl class="info">
-    <dt>Email:</dt>
-    <dd>uherna05@calpoly.edu</dd>
+    <h2>Contact Information</h2>
+    <dl class="info">
+      <dt>Email:</dt>
+      <dd>uherna05@calpoly.edu</dd>
 
-    <dt>Phone:</dt>
-    <dd>(831) 269-4746</dd>
-  </dl>
+      <dt>Phone:</dt>
+      <dd>(831) 269-4746</dd>
+    </dl>
+
+    <h2> About me</h2>
+    <p> I am currently a 4th year computer science major at Cal Poly.
+      I'm also a history minor.
+    </p>
+    <p> Some facts about me:</p>
+    <ul>
+      <li>I am the third born out of four </li>
+      <li> I enjoy playing video games. Mainly Fifa and CoD.</li>
+      <li> My favorite food are quesadillas</li>
+    </ul>
+
+    <h2>Contact Me</h2>
+
+    <form id="contact-form" novalidate>
+      <div class="form-row">
+        <label for="email"> Email </label> <br />
+        <input id="email" name="email" type="email" autocomplete="email" required />
+      </div>
+
+      <fieldset class="form-row">
+        <legend>What best describes you? (select at least one)</legend>
+
+        <div>
+          <input id="role-employer" type="checkbox" name="role" value="employer" />
+          <label for="role-employer">Employer</label>
+        </div>
+
+        <div>
+          <input id="role-peer" type="checkbox" name="role" value="peer" />
+          <label for="role-peer">Peer</label>
+        </div>
+
+        <div>
+          <input id="role-other" type="checkbox" name="role" value="other" />
+          <label for="role-other">Other</label>
+        </div>
+      </fieldset>
+
+      <div class="form-row">
+        <label for="message">Message </label> <br />
+        <textarea id="message" name="message" rows="4"></textarea>
+      </div>
+
+      <input type="submit" value="Send" />
+    </form>
+
+    <script>
+      function isValidEmail(stringToTest) {
+        const emailRegex =
+                /^(?!\.)(?!.*\.\.)([a-z0-9_'+\-\.]*)[a-z0-9_'+\-]@([a-z0-9][a-z0-9\-]*\.)+[a-z]{2,}$/i;
+        return emailRegex.test(stringToTest);
+      }
+
+      const form = document.getElementById("contact-form");
+      const emailInput = document.getElementById("email");
+
+      form.addEventListener("submit", function (e) {
+        let hasError = false;
+
+        // clear error
+        const oldEmailError = document.getElementById("email-error");
+        if (oldEmailError) oldEmailError.remove();
+
+        const oldRoleError = document.getElementById("role-error");
+        if (oldRoleError) oldRoleError.remove();
+
+        emailInput.removeAttribute("aria-invalid");
+        emailInput.removeAttribute("aria-describedby");
+
+        const checkboxes = document.querySelectorAll('input[name="role"]');
+        const fieldset = form.querySelector("fieldset");
+
+        for (const cb of checkboxes) {
+          cb.removeAttribute("aria-invalid");
+          cb.removeAttribute("aria-describedby");
+        }
+
+        // email validatyion
+        const email = emailInput.value.trim();
+
+        if (!email || !isValidEmail(email)) {
+          hasError = true;
+
+          const error = document.createElement("p");
+          error.id = "email-error";
+          error.className = "error";
+          error.innerText = "Please enter a valid email address.";
+
+          emailInput.setAttribute("aria-invalid", "true");
+          emailInput.setAttribute("aria-describedby", "email-error");
+          emailInput.after(error);
+        }
+
+        // checkbox validation
+        let anyChecked = false;
+        for (const cb of checkboxes) {
+          if (cb.checked) {
+            anyChecked = true;
+            break;
+          }
+        }
+
+        if (!anyChecked) {
+          hasError = true;
+
+          const error = document.createElement("p");
+          error.id = "role-error";
+          error.className = "error";
+          error.innerText = "Please select at least one option.";
+
+          fieldset.append(error);
+
+          for (const cb of checkboxes) {
+            cb.setAttribute("aria-invalid", "true");
+            cb.setAttribute("aria-describedby", "role-error");
+          }
+        }
+
+        //  final
+        if (hasError) {
+          e.preventDefault();
+
+          // focus first invalid field
+          if (emailInput.getAttribute("aria-invalid") === "true") {
+            emailInput.focus();
+          } else {
+            checkboxes[0].focus();
+          }
+        }
+        // allow anbd reload page
+      });
+    </script>
 
 
-  <h2> About me</h2>
-  <p> I am currently a 4th year computer science major at Cal Poly.
-    I'm also a history minor.
-  </p>
-  <p> Some facts about me:</p>
-  <ul>
-    <li>I am the third born out of four </li>
-    <li> I enjoy playing video games. Mainly Fifa and CoD.</li>
-    <li> My favorite food are quesadillas</li>
-  </ul>
-</main>
- <script type="module" src="header.mjs"></script>
+  </main>
+   <script type="module" src="header.mjs"></script>
 </body>
 </html>
