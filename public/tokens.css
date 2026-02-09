@@ -1,0 +1,23 @@
+:root {
+    --Color-Bg-Main: rgb(100, 200, 150);
+    --Color-Bg-Header: rgb(100, 0, 100);
+
+    --Color-Text-Primary: rgb(150, 0, 5);
+    --Color-Text-Headers: rgb(0, 23, 255);
+    --Color-Text-Inverse: rgb(255, 255, 255);
+
+    --Font-Family-Base: Signika, serif;
+    --Font-Family-Heading: Calibri, serif;
+
+    --Font-Size-Base: larger;
+    --Space-Small: 1rem;
+}
+
+body.dark-mode {
+    --Color-Bg-Main: rgb(30, 30, 30);
+    --Color-Bg-Header: rgb(15, 15, 15);
+
+    --Color-Text-Primary: rgb(230, 230, 230);
+    --Color-Text-Headers: rgb(170, 200, 255);
+    --Color-Text-Inverse: rgb(255, 255, 255);
+}

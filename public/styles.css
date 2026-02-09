@@ -1,0 +1,100 @@
+body{
+    background-color: var(--Color-Bg-Main);
+
+}
+
+body p, dt, ul, dd{
+    font-family: var(--Font-Family-Base), sans-serif;
+    font-size: larger;
+    color: var(--Color-Text-Primary)
+}
+
+header{
+    background-color: var(--Color-Bg-Header);
+}
+header a,h1, .darkmode-label{
+    font-family: var(--Font-Family-Base), sans-serif;
+    color: var(--Color-Text-Inverse);
+}
+
+.navbar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5rem 1rem;
+}
+.nav-left{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-right{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-links{
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-btn{
+    display: none;
+    padding: 0.4rem 0.7rem;
+    cursor: pointer;
+}
+
+.info{
+    display: grid;
+    grid-template-columns: max-content max-content;
+    column-gap: 1rem;
+    row-gap: 1rem;
+}
+
+h2, h3{
+    font-family: var(--Font-Family-Heading), sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    color: rgb(0,23,255);
+}
+.my-picture{
+    display: block;
+    width:200px;
+    height: auto;
+}
+.hobby{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 40rem){
+    .nav-left{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    /* Hide links */
+    .nav-links{
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .nav-links.is-open{
+        display: flex;
+    }
+
+    /* Show menu  */
+    .menu-btn{
+        display: inline-block;
+    }
+}
